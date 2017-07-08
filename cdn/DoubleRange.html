@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../jRange/jquery.range.css" rel="stylesheet">
+  <script src="http://www.youhutong.com/static/js/jquery.js"></script>
+    <script src="../jRange/jquery.range.js"></script>
+    <title>Title</title>
+</head>
+<body>
+  <div class="kong">
+    <input value="10,30" id="timeselect"/>
+  </div>
+</body>
+</html>
+<script>
+  //初始化滑动选择
+  $('#timeselect').jRange({
+    from: 0,
+    to: 1000000,
+    step: 1000,
+    scale: [0,10,20,30,40],
+    format: '%s',
+    width: 200,
+    showLabels: true,
+    isRange : true
+  });
+
+  var role_mapping = {
+    '300': '11040',
+      '400': [
+      '11020',
+      '11040'
+    ],
+      '500': '11030',
+      '800': '11020'
+  }
+
+  var showType = function (id) {
+    var roleIds = role_mapping[id]
+    var isArr = Object.prototype.toString.call(roleIds)=='[object Array]'
+    if (isArr) {
+      return Math.max.apply({}, roleIds)
+    } else {
+      return roleIds
+    }
+  }
+
+console.log(showType('500'))
+
+  Array.prototype.unique = function() {
+    var a = this.concat();
+    for(var i=0; i<a.length;i++) {
+      for(var j=i+1; j < a.length; j++) {
+        if(a[i] === a[j]) {
+          a.splice(j, 1);
+        }
+      }
+    }
+    return a;
+  };
+
+  //Demo
+  var array1 = ["a","b","c","d"];
+  var array2 = ["b", "c", "d"];
+  var array3 = array1.concat(array2).unique();
+
+  console.log(array3)
+
+  var arr = new Array(3)
+  arr[0] = "George"
+  arr[1] = "John"
+  arr[2] = "Thomas"
+
+  var arr2 = new Array(3)
+  arr2[0] = "James"
+  arr2[1] = "Adrew"
+  arr2[2] = "Martin"
+
+  var newArr = arr.concat(arr2)
+  console.log(newArr)
+  console.log('newStr')
+  console.log(newArr.join(','))
+
+  var newArr = ['1','2','3','4','5', '999','8', '100']
+  Array.prototype.max = function () {
+    var isArr = Object.prototype.toString.call(this)=='[object Array]'
+    if (isArr) {
+      return Math.max.apply({}, this)
+    } else {
+      return
+    }
+  }
+console.log('max')
+  console.log(newArr.max())
+
+  var arr = [1, 23,,,, 12],
+    i, len;
+
+  for (i = arr.length - 1;  i >0; i--) {
+    if (arr[i] === undefined) {
+      arr.splice(i, 1);
+    }
+  }
+
+  console.log('arr')
+  console.log(arr)
+</script>
+<style>
+  .kong{
+    margin: 20px 10px 20px 10px;
+  }
+</style>
